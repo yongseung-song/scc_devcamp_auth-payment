@@ -1,4 +1,8 @@
-import { CardDescription, CardHeader, CardTitle } from './shadcn/card';
+import {
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '../../../components/ui/card';
 
 export default function SignUpHeader() {
   return (
