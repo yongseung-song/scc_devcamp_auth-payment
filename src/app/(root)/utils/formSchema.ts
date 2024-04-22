@@ -12,7 +12,7 @@ import {
 export const formSchema = z.object({
   [SIGNUP_NAME.id]: z
     .string()
-    .min(3, { message: '이름은 두 글자 이상이어야 합니다.' }),
+    .min(2, { message: '이름은 두 글자 이상이어야 합니다.' }),
   [SIGNUP_EMAIL.id]: z
     .string()
     .email({ message: '올바른 이메일을 입력해주세요' }),
