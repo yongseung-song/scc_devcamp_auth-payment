@@ -33,8 +33,14 @@ export default function SignUpForm() {
       [SIGNUP_PASSWORD_CONFIRM.id]: '',
     },
   });
+
   const onSubmit = (data: RegisterInput) => {
-    console.log(data);
+    const { password, passwordConfirm } = data;
+    if (password !== passwordConfirm) {
+      alert('비밀번호가 일치하지 않습니다');
+      return;
+    }
+    alert(JSON.stringify(data, null, 4));
   };
 
   const onClickNextStep = () => {
