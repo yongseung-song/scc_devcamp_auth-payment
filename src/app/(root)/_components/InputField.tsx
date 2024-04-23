@@ -13,15 +13,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Control, FieldValues } from 'react-hook-form';
 import { InputFieldProps, SIGNUP_ROLE } from '../_constants/inputFieldsData';
 
 interface Props {
   inputField: InputFieldProps;
+  control: Control<FieldValues>;
 }
 
-export const InputField = ({ inputField }: Props) => {
+export const InputField = ({ inputField, control }: Props) => {
   return (
     <FormField
+      control={control}
       name={inputField.id}
       render={({ field }) => (
         <FormItem>
