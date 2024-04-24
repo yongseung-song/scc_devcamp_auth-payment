@@ -41,6 +41,8 @@ export default function SignUpForm() {
       return;
     }
     alert(JSON.stringify(data, null, 4));
+    form.reset();
+    setStep(0);
   };
 
   const onClickNextStep = () => {
@@ -77,26 +79,26 @@ export default function SignUpForm() {
             <InputField inputField={SIGNUP_ROLE} control={form.control} />
           </div>
         ) : (
-          <section>
-            <div>
-              <InputField inputField={SIGNUP_PASSWORD} control={form.control} />
-              <InputField
-                inputField={SIGNUP_PASSWORD_CONFIRM}
-                control={form.control}
-              />
-            </div>
-          </section>
+          <div>
+            <InputField inputField={SIGNUP_PASSWORD} control={form.control} />
+            <InputField
+              inputField={SIGNUP_PASSWORD_CONFIRM}
+              control={form.control}
+            />
+          </div>
         )}
         <Button className={cn({ hidden: step === 0 })} type="submit">
           계정 등록하기
         </Button>
         <Button
+          type="button"
           className={cn({ hidden: step === 1 })}
           onClick={onClickNextStep}
         >
           다음 단계로
         </Button>
         <Button
+          type="button"
           className={cn({ hidden: step === 0 })}
           onClick={onClickPrevStep}
         >
