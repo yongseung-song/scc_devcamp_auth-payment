@@ -1,12 +1,12 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { useStep } from '@/provider/stepProvider/StepProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Form } from '../../../components/ui/form';
+import { formSchema } from '../app/(root)/utils/formSchema';
 import {
   SIGNUP_CONTACT,
   SIGNUP_EMAIL,
@@ -14,14 +14,22 @@ import {
   SIGNUP_PASSWORD,
   SIGNUP_PASSWORD_CONFIRM,
   SIGNUP_ROLE,
-} from '../_constants/inputFieldsData';
-import { formSchema } from '../utils/formSchema';
+} from '../constants/inputFieldsData';
+import FormBtnGroup from './FormBtnGroup';
 import { InputField } from './InputField';
+import { Form } from './ui/form';
 
 type RegisterInput = z.infer<typeof formSchema>;
 
 export default function SignUpForm() {
-  const [step, setStep] = useState(0);
+  const { step, setStep } = useStep();
+
+  useEffect(() => {
+    step === 0
+      ? form.setFocus(SIGNUP_NAME.id)
+      : form.setFocus(SIGNUP_PASSWORD.id);
+  }, [step]);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -68,42 +76,27 @@ export default function SignUpForm() {
   const onClickPrevStep = () => {
     setStep(0);
   };
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        {step === 0 ? (
-          <div>
-            <InputField inputField={SIGNUP_NAME} control={form.control} />
-            <InputField inputField={SIGNUP_EMAIL} control={form.control} />
-            <InputField inputField={SIGNUP_CONTACT} control={form.control} />
-            <InputField inputField={SIGNUP_ROLE} control={form.control} />
-          </div>
-        ) : (
-          <div>
-            <InputField inputField={SIGNUP_PASSWORD} control={form.control} />
-            <InputField
-              inputField={SIGNUP_PASSWORD_CONFIRM}
-              control={form.control}
-            />
-          </div>
-        )}
-        <Button className={cn({ hidden: step === 0 })} type="submit">
-          계정 등록하기
-        </Button>
-        <Button
-          type="button"
-          className={cn({ hidden: step === 1 })}
-          onClick={onClickNextStep}
-        >
-          다음 단계로
-        </Button>
-        <Button
-          type="button"
-          className={cn({ hidden: step === 0 })}
-          onClick={onClickPrevStep}
-        >
-          이전 단계로
-        </Button>
+        <div className={cn({ hidden: step === 1 })}>
+          <InputField inputField={SIGNUP_NAME} control={form.control} />
+          <InputField inputField={SIGNUP_EMAIL} control={form.control} />
+          <InputField inputField={SIGNUP_CONTACT} control={form.control} />
+          <InputField inputField={SIGNUP_ROLE} control={form.control} />
+        </div>
+        <div className={cn({ hidden: step === 0 })}>
+          <InputField inputField={SIGNUP_PASSWORD} control={form.control} />
+          <InputField
+            inputField={SIGNUP_PASSWORD_CONFIRM}
+            control={form.control}
+          />
+        </div>
+        <FormBtnGroup
+          onClickNextStep={onClickNextStep}
+          onClickPrevStep={onClickPrevStep}
+        />
       </form>
     </Form>
   );
