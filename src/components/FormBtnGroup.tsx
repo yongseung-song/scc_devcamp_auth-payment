@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { useStep } from '@/provider/stepProvider/StepProvider';
+import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface Props {
@@ -25,9 +26,11 @@ export default function FormBtnGroup({
         onClick={onClickNextStep}
       >
         다음 단계로
+        <ArrowRight className="ml-2 w-4 h-4" />
       </Button>
       <Button
         type="button"
+        variant="ghost"
         className={cn({ hidden: step === 0 })}
         onClick={onClickPrevStep}
       >
