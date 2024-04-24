@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Control, FieldValues } from 'react-hook-form';
-import { InputFieldProps, SIGNUP_ROLE } from '../_constants/inputFieldsData';
+import { InputFieldProps, SIGNUP_ROLE } from '../constants/inputFieldsData';
 
 interface Props {
   inputField: InputFieldProps;
@@ -27,7 +27,7 @@ export const InputField = ({ inputField, control }: Props) => {
       control={control}
       name={inputField.id}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="mt-4">
           <FormLabel>{inputField.label}</FormLabel>
           <FormControl>
             {inputField.id !== SIGNUP_ROLE.id ? (
