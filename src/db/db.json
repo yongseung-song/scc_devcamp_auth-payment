@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "5690",
+      "name": "홍길동",
+      "email": "hello@sparta.com",
+      "contact": "01000000000",
+      "role": "user",
+      "password": "asdf!23"
+    },
+    {
+      "id": "6cad",
+      "name": "송송이",
+      "email": "p@p.com",
+      "contact": "01000000000",
+      "role": "user",
+      "password": "asdf!23"
+    },
+    {
+      "id": "b311",
+      "name": "김개똥",
+      "email": "b@b.com",
+      "contact": "01000000000",
+      "role": "user",
+      "password": "asdf!23"
+    },
+    {
+      "id": "d26e",
+      "name": "잘까",
+      "email": "s@s.com",
+      "contact": "01000000000",
+      "role": "admin",
+      "password": "asdf!23"
+    }
+  ]
+}

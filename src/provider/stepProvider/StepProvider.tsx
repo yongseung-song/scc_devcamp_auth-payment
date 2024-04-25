@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 
 interface StepContextType {
   step: number;
@@ -24,9 +24,6 @@ export const StepProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [step, setStep] = useState(0);
 
-  return (
-    <StepContext.Provider value={{ step, setStep }}>
-      {children}
-    </StepContext.Provider>
-  );
+  const value = useMemo(() => ({ step, setStep }), [step]);
+  return <StepContext.Provider value={value}>{children}</StepContext.Provider>;
 };

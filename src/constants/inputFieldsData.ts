@@ -29,6 +29,7 @@ export const SIGNUP_CONTACT: InputFieldProps = {
 export const SIGNUP_ROLE: InputFieldProps = {
   id: 'role',
   label: '역할',
+  placeholder: '역할을 선택해주세요',
 };
 
 export const SIGNUP_PASSWORD: InputFieldProps = {
