@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { formSchema } from '../app/(root)/utils/formSchema';
 import {
   SIGNUP_CONTACT,
   SIGNUP_EMAIL,
@@ -15,8 +14,10 @@ import {
   SIGNUP_PASSWORD_CONFIRM,
   SIGNUP_ROLE,
 } from '../constants/inputFieldsData';
+import { formSchema } from '../utils/formSchema';
 import FormBtnGroup from './FormBtnGroup';
-import { InputField } from './InputField';
+import { FormInput } from './FormInput';
+import { FormSelect } from './FormSelect';
 import { Form } from './ui/form';
 
 type RegisterInput = z.infer<typeof formSchema>;
@@ -81,14 +82,14 @@ export default function SignUpForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className={cn({ hidden: step === 1 })}>
-          <InputField inputField={SIGNUP_NAME} control={form.control} />
-          <InputField inputField={SIGNUP_EMAIL} control={form.control} />
-          <InputField inputField={SIGNUP_CONTACT} control={form.control} />
-          <InputField inputField={SIGNUP_ROLE} control={form.control} />
+          <FormInput inputField={SIGNUP_NAME} control={form.control} />
+          <FormInput inputField={SIGNUP_EMAIL} control={form.control} />
+          <FormInput inputField={SIGNUP_CONTACT} control={form.control} />
+          <FormSelect inputField={SIGNUP_ROLE} control={form.control} />
         </div>
         <div className={cn({ hidden: step === 0 })}>
-          <InputField inputField={SIGNUP_PASSWORD} control={form.control} />
-          <InputField
+          <FormInput inputField={SIGNUP_PASSWORD} control={form.control} />
+          <FormInput
             inputField={SIGNUP_PASSWORD_CONFIRM}
             control={form.control}
           />

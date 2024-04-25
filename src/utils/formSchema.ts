@@ -7,7 +7,7 @@ import {
   SIGNUP_PASSWORD,
   SIGNUP_PASSWORD_CONFIRM,
   SIGNUP_ROLE,
-} from '../../../constants/inputFieldsData';
+} from '../constants/inputFieldsData';
 
 const passwordRegex =
   /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
