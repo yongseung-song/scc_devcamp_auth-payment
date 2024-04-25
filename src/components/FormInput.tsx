@@ -1,13 +1,13 @@
+import { Control, FieldValues } from 'react-hook-form';
+import { InputFieldProps } from '../constants/inputFieldsData';
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Control, FieldValues } from 'react-hook-form';
-import { InputFieldProps } from '../constants/inputFieldsData';
+} from './ui/form';
+import { Input } from './ui/input';
 
 interface Props {
   inputField: InputFieldProps;
