@@ -1,12 +1,20 @@
-import ProgressClient from './ProgressClient';
 import { CardDescription, CardHeader, CardTitle } from './ui/card';
 
-export default function SignUpHeader() {
+interface Props {
+  stage: 'signin' | 'signup';
+}
+
+export default function Header({ stage }: Props) {
   return (
     <CardHeader>
-      <ProgressClient />
-      <CardTitle>계정을 생성합니다</CardTitle>
-      <CardDescription>필수 정보를 입력해볼게요.</CardDescription>
+      <CardTitle>
+        {stage === 'signin' ? '로그인' : '계정을 생성합니다'}
+      </CardTitle>
+      <CardDescription>
+        {stage === 'signin'
+          ? '계정 정보를 입력해주세요.'
+          : '필수 정보를 입력해볼게요.'}
+      </CardDescription>
     </CardHeader>
   );
 }

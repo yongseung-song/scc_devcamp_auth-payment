@@ -1,7 +1,9 @@
 'use client';
 
+import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 import { useStep } from '@/provider/stepProvider/StepProvider';
+import { RegisterInput } from '@/types/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,16 +16,15 @@ import {
   SIGNUP_PASSWORD_CONFIRM,
   SIGNUP_ROLE,
 } from '../constants/inputFieldsData';
-import { formSchema } from '../utils/formSchema';
+import { signupSchema } from '../utils/formSchema';
 import FormBtnGroup from './FormBtnGroup';
 import { FormInput } from './FormInput';
 import { FormSelect } from './FormSelect';
 import { Form } from './ui/form';
 
-type RegisterInput = z.infer<typeof formSchema>;
-
 export default function SignUpForm() {
   const { step, setStep } = useStep();
+  const { registerUser } = useAuth();
 
   useEffect(() => {
     step === 0
@@ -31,8 +32,8 @@ export default function SignUpForm() {
       : form.setFocus(SIGNUP_PASSWORD.id);
   }, [step]);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof signupSchema>>({
+    resolver: zodResolver(signupSchema),
     defaultValues: {
       [SIGNUP_NAME.id]: '',
       [SIGNUP_EMAIL.id]: '',
@@ -49,7 +50,14 @@ export default function SignUpForm() {
       alert('비밀번호가 일치하지 않습니다');
       return;
     }
-    alert(JSON.stringify(data, null, 4));
+    const userData = {
+      name: data[SIGNUP_NAME.id],
+      email: data[SIGNUP_EMAIL.id],
+      contact: data[SIGNUP_CONTACT.id],
+      role: data[SIGNUP_ROLE.id],
+      password: data[SIGNUP_PASSWORD.id],
+    };
+    registerUser(userData);
     form.reset();
     setStep(0);
   };

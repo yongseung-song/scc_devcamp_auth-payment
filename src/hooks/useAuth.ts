@@ -16,12 +16,19 @@ export function useAuth() {
     }
   };
 
-  const loginUser = async (email: string, password: string) => {
+  const loginUser = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
     try {
       const response = await axiosInstance.get<User[]>(`/users`);
       const user = response.data.find(
         (user) => user.email === email && user.password === password
       );
+      console.log(user);
       return user ? { user } : { message: '로그인 실패' };
     } catch (error) {
       return { message: '로그인 실패' };
