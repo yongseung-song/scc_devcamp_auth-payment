@@ -1,5 +1,5 @@
+import Header from './AuthHeader';
 import SignInForm from './SignInForm';
-import Header from './SignUpHeader';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 

@@ -1,7 +1,7 @@
 import { StepProvider } from '@/provider/stepProvider/StepProvider';
+import Header from './AuthHeader';
 import ProgressClient from './ProgressClient';
 import SignUpForm from './SignUpForm';
-import Header from './SignUpHeader';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 

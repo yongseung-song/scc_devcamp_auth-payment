@@ -1,3 +1,4 @@
+import { ThemeBtnGroup } from '@/components/ThemeBtnGroup';
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { Inter } from 'next/font/google';
@@ -24,6 +25,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ThemeBtnGroup />
           {children}
         </ThemeProvider>
       </body>
